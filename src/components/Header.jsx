@@ -1,9 +1,22 @@
+import { Heart, Star, User } from "lucide-react";
+
+
 export default function Header() {
     return(
         <header>
-            <h1>Discovery</h1>
-            <h1>Watchlist</h1>
-            <h1>Profile</h1>
+            <a href="/" className="">
+                <span>Discovery</span>
+            </a>
+            <a href="/" className="">
+                <span>Watchlist</span>
+            </a>
+            <a href="/" className="">
+                <span>Watched</span>
+            </a>
+
+            <button className="rounded-m ">
+                <User/>
+            </button>
         </header>
     )
 }
