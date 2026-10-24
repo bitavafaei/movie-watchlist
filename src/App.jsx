@@ -1,7 +1,6 @@
-import Header from "./components/Header";
 import Discovery from "./components/Discovery";
 import MovieDetails from "./components/MovieDetails";
-import WatchlistItem from "./components/WatchlistItem";
+import Watchlist from "./components/WatchList";
 
 function App() {
 
@@ -9,7 +8,7 @@ function App() {
     <>
         {/* <Discovery/> */}
         {/* <MovieDetails/> */}
-        <WatchlistItem/>
+        <Watchlist/>
     </>
   )
 }
