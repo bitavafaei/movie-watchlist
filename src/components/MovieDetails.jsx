@@ -4,14 +4,14 @@ export default function MovieDetails() {
     return(
         <div>
             <Header/>
-            <div className="flex bg-[#3b4e6d] gap-15 py-30 px-10 h-screen justify-center">
+            <div className="flex items-center bg-[#141B2B] gap-16 py-16 px-6 justify-center min-h-[calc(100vh-5rem)]">
                 <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ4C_vudYUeoJpDesEX5KnRVNZy6bdqTofNY_0rehkyDngGB7kI"
                 alt="The Last Escape"
-                className="h-100 w-80 rounded-xl" />
-                <div>
+                className="w-72 md:w-80 h-auto rounded-xl object-cover" />
+                <div className="max-w-xl">
                     <h1 className="text-white text-4xl font-bold">The Last Escape</h1>
-                    <h2 className="text-slate-400 text-lg font-lg">1970 . 1h 30m</h2>
-                    <h2 className="text-slate-400 text-lg font-lg">Genres: War, Action</h2>
+                    <h2 className="text-slate-400 text-lg">1970 . 1h 30m</h2>
+                    <h2 className="text-slate-400 text-lg">Genres: War, Action</h2>
                     <div className="flex gap-2 mt-2 items-center">
                         <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/IMDB_Logo_2016.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original"
                         alt="IMDb logo"
@@ -29,7 +29,7 @@ export default function MovieDetails() {
                             John Collin, Sgt. Henry
                         </p>
                     </div>
-                    <button className="mt-5 bg-blue-500 py-2 px-35 text-white rounded-md font-semibold text-lg">Add to Watchlist</button>
+                    <button className="mt-5 w-full max-w-md rounded-md bg-blue-500 py-3 text-lg font-semibold text-white">Add to Watchlist</button>
                 </div>
             </div>
         </div>
