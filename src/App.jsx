@@ -1,6 +1,6 @@
 import Discovery from "./components/Discovery";
 import MovieDetails from "./components/MovieDetails";
-import Watchlist from "./components/WatchList";
+import Watchlist from "./components/Watchlist";
 
 function App() {
 

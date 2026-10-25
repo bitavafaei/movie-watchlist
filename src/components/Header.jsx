@@ -1,4 +1,4 @@
-import { Heart, Star, User, Video } from "lucide-react";
+import { Heart, Star, User, Check, Bell } from "lucide-react";
 
 
 export default function Header() {
@@ -10,18 +10,20 @@ export default function Header() {
                     <span>Discovery</span>
                 </a>
                 <a href="/" className="flex gap-2 items-center">
-                    <Video size={18}/>
+                    <Heart size={18}/>
                     <span>Watchlist</span>
                 </a>
                 <a href="/" className="flex gap-2 items-center">
-                    <Heart size={18}/>
+                    <Check size={18}/>
                     <span>Watched</span>
                 </a>
             </nav>
-
-            <button className="bg-slate-300 rounded-full p-2">
-                <User className="text-[#1f2a3c]"/>
-            </button>
+            <div className="flex items-center text-slate-300 gap-4">
+                <Bell/>
+                <button className="bg-slate-300 rounded-full p-2">
+                    <User className="text-[#1f2a3c]"/>
+                </button>
+            </div>
         </header>
     )
 }

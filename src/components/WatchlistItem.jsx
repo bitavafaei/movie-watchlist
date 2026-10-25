@@ -1,6 +1,6 @@
 export default function WatchlistItem() {
     return(
-        <div className="bg-[#202C3C] rounded-2xl flex justify-between px-6 py-4 w-300">
+        <div className="bg-[#202C3C] rounded-2xl flex justify-between px-6 py-4 w-full">
             <div className="flex gap-10">
                 <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQ4C_vudYUeoJpDesEX5KnRVNZy6bdqTofNY_0rehkyDngGB7kI"
                     alt="The Last Escape"
