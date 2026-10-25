@@ -6,9 +6,9 @@ function App() {
 
   return (
     <>
-        {/* <Discovery/> */}
+        <Discovery/>
         {/* <MovieDetails/> */}
-        <Watchlist/>
+        {/* <Watchlist/> */}
     </>
   )
 }
