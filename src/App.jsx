@@ -10,7 +10,6 @@ function App() {
     function addToWatchlist(movie) {
         setWatchlist((preWatchlist) =>{
             if (preWatchlist.some((item) => item.id === movie.id)){
-                console.log(movie)
                 return preWatchlist
             }
 
@@ -22,7 +21,7 @@ function App() {
     <>
         <Discovery onAddToWatchlist={addToWatchlist}/>
         {/* <MovieDetails/> */}
-        <Watchlist/>
+        <Watchlist watchlist={watchlist}/>
     </>
   )
 }
