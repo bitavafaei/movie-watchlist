@@ -6,6 +6,7 @@ import Watchlist from "./components/Watchlist";
 function App() {
 
     const[watchlist, setWatchlist] = useState([])
+    const[watched, setWatched] = useState([])
 
     function addToWatchlist(movie) {
         setWatchlist((preWatchlist) =>{
@@ -22,11 +23,21 @@ function App() {
             preWatchlist.filter((item) => item.id !== movie.id))
     }
 
+    function markAsWatched(movie) {
+        setWatched((alreadyWatched) =>{
+            if (alreadyWatched.some((item) => item.id === movie.id)){
+                return alreadyWatched
+            }
+
+            return [...alreadyWatched, movie]
+        })
+    }
+
   return (
     <>
         <Discovery onAddToWatchlist={addToWatchlist}/>
-        {/* <MovieDetails/> */}
-        <Watchlist watchlist={watchlist} onRemove={removeFromWatchlist}/>
+        <MovieDetails/>
+        <Watchlist watchlist={watchlist} onRemove={removeFromWatchlist} watched={watched} markAsWatched={markAsWatched}/>
     </>
   )
 }
