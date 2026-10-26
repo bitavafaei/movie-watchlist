@@ -1,7 +1,7 @@
 import WatchlistItem from "./WatchlistItem";
 import Header from "./Header";
 
-export default function Watchlist({watchlist}) {
+export default function Watchlist({watchlist, onRemove}) {
     return(
         <div>
             <Header/>
@@ -20,6 +20,7 @@ export default function Watchlist({watchlist}) {
                                 <WatchlistItem
                                     key={movie.id}
                                     movie={movie}
+                                    onRemove={onRemove}
                                 />
                             ))}
                         </div>

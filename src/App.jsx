@@ -17,11 +17,16 @@ function App() {
         });
     }
 
+    function removeFromWatchlist(movie) {
+        setWatchlist((preWatchlist) =>
+            preWatchlist.filter((item) => item.id !== movie.id))
+    }
+
   return (
     <>
         <Discovery onAddToWatchlist={addToWatchlist}/>
         {/* <MovieDetails/> */}
-        <Watchlist watchlist={watchlist}/>
+        <Watchlist watchlist={watchlist} onRemove={removeFromWatchlist}/>
     </>
   )
 }
