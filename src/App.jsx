@@ -26,7 +26,8 @@ function App() {
     function markAsWatched(movie) {
         setWatched((alreadyWatched) =>{
             if (alreadyWatched.some((item) => item.id === movie.id)){
-                return alreadyWatched
+                const watchedMovie = alreadyWatched.filter((item) => item.id !== movie.id)
+                return watchedMovie
             }
 
             return [...alreadyWatched, movie]
