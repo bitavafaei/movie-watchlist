@@ -27,21 +27,33 @@ export default function Watchlist({watchlist, onRemove, watched, markAsWatched})
                     <h2 className="text-slate-400 text-xl font-bold">Filters</h2>
                     <div className="flex gap-2 my-4">
                         <button className={`w-fit px-2 h-10 max-w-md rounded-md text-lg transition-colors
-                            ${filter === "All" ? "text-white bg-slate-700 hover: bg-slate-300 transition-colors" : "text-slate-300 bg-slate-500 hover: bg-slate-900 transition-colors"}`}
+                            ${filter === "All"
+                                ? "text-white bg-blue-500 hover:bg-blue-900"
+                                : "text-slate-300 bg-slate-500 hover:bg-slate-700"}`}
                             onClick={() => setFilter("All")}>All</button>
-                        <button className={`w-fit px-2 h-10 max-w-md rounded-md text-lg
-                            ${filter === "Watched" ? "text-white bg-slate-700" : "text-slate-300 bg-slate-500"}`}
+                        <button className={`w-fit px-2 h-10 max-w-md rounded-md text-lg transition-colors
+                            ${filter === "Watched"
+                                ? "text-white bg-blue-500 hover:bg-blue-900"
+                                : "text-slate-300 bg-slate-500 hover:bg-slate-700"}`}
                             onClick={() => setFilter("Watched")}>Watched</button>
-                        <button className={`w-fit px-2 h-10 max-w-md rounded-md text-lg
-                            ${filter === "Unwatched" ? "text-white bg-slate-700" : "text-slate-300 bg-slate-500"}`}
+                        <button className={`w-fit px-2 h-10 max-w-md rounded-md text-lg transition-colors
+                            ${filter === "Unwatched"
+                                ? "text-white bg-blue-500 hover:bg-blue-900" :
+                                "text-slate-300 bg-slate-500 hover:bg-slate-700"}`}
                             onClick={() => setFilter("Unwatched")}>Unwatched</button>
                     </div>
                     <hr className="border-slate-400 border-[1px] rounded-md mb-4" />
-                    {watchlist.length === 0 ?(
+                    {watchlist.length === 0 ? (
                         <p className="text-slate-400 text-center py-10">
                             Your watchlist is empty.
                         </p>
-                    ):(
+                    ) : filteredWatchlist.length === 0 ? (
+                        filter === "Watched" ?(
+                            <p className="text-slate-400 text-center py-10">There is no watched movie yet.</p>
+                        ) : filter === "Unwatched" ? (
+                            <p className="text-slate-400 text-center py-10">There is no unwatched movie.</p>
+                        ) : null
+                   ) : (
                         <div className="flex flex-col gap-6">
                             {filteredWatchlist.map((movie) =>(
                                 <WatchlistItem
