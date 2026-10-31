@@ -7,6 +7,11 @@ export default function MovieDetails() {
     const {id} = useParams()
     const selectedMovie = movies.find((movie) =>(
         String(movie.id) === id))
+
+    if (!selectedMovie) {
+        return <p>Movie not found</p>
+    }
+
     return(
         <div>
             <Header/>
@@ -30,10 +35,9 @@ export default function MovieDetails() {
                     </div>
                     <div className="mt-5">
                         <h3 className="text-white text-lg font-semibold">Top Cast</h3>
-                        <p className="text-slate-400 text-sm">{selectedMovie.casters[0]}<br/>
-                            {selectedMovie.casters[1]}<br/>
-                            {selectedMovie.casters[2]}
-                        </p>
+                        <div className="text-slate-400 text-sm flex flex-col gap-1">{selectedMovie.casters.map((actor) =>
+                           (<p key={actor}>{actor}</p>))}
+                        </div>
                     </div>
                     <button className="mt-5 w-full max-w-md rounded-md bg-blue-500 py-3 text-lg font-semibold text-white">Add to Watchlist</button>
                 </div>
