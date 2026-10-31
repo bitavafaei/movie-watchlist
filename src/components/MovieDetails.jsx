@@ -2,7 +2,7 @@ import Header from "./Header"
 import { useParams } from "react-router";
 import { movies } from "../data/movies";
 
-export default function MovieDetails() {
+export default function MovieDetails({onAddToWatchlist}) {
 
     const {id} = useParams()
     const selectedMovie = movies.find((movie) =>(
@@ -39,7 +39,7 @@ export default function MovieDetails() {
                            (<p key={actor}>{actor}</p>))}
                         </div>
                     </div>
-                    <button className="mt-5 w-full max-w-md rounded-md bg-blue-500 py-3 text-lg font-semibold text-white">Add to Watchlist</button>
+                    <button className="mt-5 w-full max-w-md rounded-md bg-blue-500 py-3 text-lg font-semibold text-white" onClick={() => {onAddToWatchlist(selectedMovie)}}>Add to Watchlist</button>
                 </div>
             </div>
         </div>
