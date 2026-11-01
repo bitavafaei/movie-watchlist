@@ -1,5 +1,5 @@
 import { Heart, Star, User, Check, Bell } from "lucide-react";
-
+import { Link } from "react-router";
 
 export default function Header() {
     return(
@@ -9,11 +9,11 @@ export default function Header() {
                     <Star size={18}/>
                     <span>Discovery</span>
                 </Link>
-                <Link to="/" className="flex gap-2 items-center">
+                <Link to="/watchlist" className="flex gap-2 items-center">
                     <Heart size={18}/>
                     <span>Watchlist</span>
                 </Link>
-                <Link to="/" className="flex gap-2 items-center">
+                <Link to="/watchlist" className="flex gap-2 items-center">
                     <Check size={18}/>
                     <span>Watched</span>
                 </Link>

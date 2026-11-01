@@ -2,7 +2,7 @@ import Header from "./Header"
 import { useParams } from "react-router";
 import { movies } from "../data/movies";
 
-export default function MovieDetails({onAddToWatchlist}) {
+export default function MovieDetails({onAddToWatchlist, watchlist, onRemove}) {
 
     const {id} = useParams()
     const selectedMovie = movies.find((movie) =>(
@@ -11,6 +11,8 @@ export default function MovieDetails({onAddToWatchlist}) {
     if (!selectedMovie) {
         return <p>Movie not found</p>
     }
+
+    const addedMovie = watchlist.some((movie) => movie.id === selectedMovie.id)
 
     return(
         <div>
@@ -39,7 +41,18 @@ export default function MovieDetails({onAddToWatchlist}) {
                            (<p key={actor}>{actor}</p>))}
                         </div>
                     </div>
-                    <button className="mt-5 w-full max-w-md rounded-md bg-blue-500 py-3 text-lg font-semibold text-white" onClick={() => {onAddToWatchlist(selectedMovie)}}>Add to Watchlist</button>
+                    <button className={`mt-5 w-full max-w-md rounded-md py-3 text-lg font-semibold text-white transition-colors duration-300
+                    ${addedMovie
+                        ? "bg-red-500"
+                        :  "bg-blue-500"
+                    }`}
+                        onClick={() => {addedMovie
+                            ? onRemove(selectedMovie)
+                            : onAddToWatchlist(selectedMovie)
+                        }}>{addedMovie
+                        ? "Remove from Watchlist"
+                        : "Add to Watchlist"
+                    }</button>
                 </div>
             </div>
         </div>

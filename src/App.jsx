@@ -2,7 +2,7 @@ import { useState } from "react";
 import Discovery from "./components/Discovery";
 import MovieDetails from "./components/MovieDetails";
 import Watchlist from "./components/Watchlist";
-import { Route, Routes, Link } from "react-router";
+import { Route, Routes } from "react-router";
 
 function App() {
 
@@ -40,7 +40,7 @@ function App() {
         <Routes>
             <Route path="/" element={<Discovery onAddToWatchlist={addToWatchlist}/>}/>
             <Route path="/watchlist" element={<Watchlist watchlist={watchlist} onRemove={removeFromWatchlist} watched={watched} markAsWatched={markAsWatched}/>}/>
-            <Route path="/movie/:id" element={<MovieDetails onAddToWatchlist={addToWatchlist}/>} />
+            <Route path="/movie/:id" element={<MovieDetails onAddToWatchlist={addToWatchlist} watchlist={watchlist} onRemove={removeFromWatchlist}/>} />
         </Routes>
     </>
   )
