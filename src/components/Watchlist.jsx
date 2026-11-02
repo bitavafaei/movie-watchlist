@@ -22,7 +22,10 @@ export default function Watchlist({watchlist, onRemove, watched, markAsWatched})
                 <div className="mx-auto w-full max-w-6xl">
                     <div className="flex justify-between items-center py-4">
                         <h1 className="text-white text-3xl font-bold">My Watchlist</h1>
-                        <button className="w-fit h-10 max-w-md rounded-4xl bg-slate-500 text-lg text-white px-4">Movies: {watchlist.length}</button>
+                        <div className="flex gap-2">
+                            <button className="w-fit h-10 max-w-md rounded-4xl bg-slate-500 text-lg text-white px-4">Movies: {watchlist.length}</button>
+                            <button className="w-fit h-10 max-w-md rounded-4xl bg-slate-500 text-lg text-white px-4">Watched Movies: {watched.length}</button>
+                        </div>
                     </div>
                     <h2 className="text-slate-400 text-xl font-bold">Filters</h2>
                     <div className="flex gap-2 my-4">

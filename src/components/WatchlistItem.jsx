@@ -23,7 +23,7 @@ export default function WatchlistItem({movie, onRemove, watched, markAsWatched})
                     </button>
                 </div>
             </div>
-            <button className="w-20 h-10 max-w-md rounded-md bg-slate-500 text-lg text-white" onClick={() => onRemove(movie)}>Remove</button>
+            <button className="w-20 h-10 max-w-md rounded-md bg-red-500 text-lg text-white" onClick={() => onRemove(movie)}>Remove</button>
         </div>
     )
 }
