@@ -15,8 +15,8 @@ export default function WatchlistItem({movie, onRemove, watched, markAsWatched})
                         <h1 className="text-white font-semibold text-xl">{movie.title}</h1>
                         <h2 className="text-yellow-500 text-sm mt-1">IMDb: {movie.rating}</h2>
                     </div>
-                    <button className={`max-w-md rounded-md p-2 text-lg font-medium text-white mt-4 inline-flex items-center justify-center gap-2 w-52 whitespace-nowrap ${
-                                isWatched ? "bg-green-700 " : "bg-slate-500"}`}
+                    <button className={`max-w-md rounded-md p-2 text-lg font-medium text-white mt-4 inline-flex items-center justify-center gap-2 w-52 whitespace-nowrap
+                                        ${isWatched ? "bg-green-700 " : "bg-slate-500"}`}
                             onClick={() => markAsWatched(movie)}>
                                 {isWatched ? "Watched" : "Mark As Watched"}
                                 {isWatched ? <CheckCircle/> : <Eye/>}

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router";
+import { Check, Plus } from "lucide-react";
 
-export default function Card({movie, onAdd}) {
+export default function Card({movie, onAdd, isAdded, onRemove}) {
     const navigate = useNavigate()
     function handleCardClick() {
         navigate(`/movie/${movie.id}`)
@@ -16,11 +17,13 @@ export default function Card({movie, onAdd}) {
                     <h2>{movie.title}</h2>
                     <p className="text-slate-400">IMDb: {movie.rating}</p>
                 </div>
-                <button className="bg-blue-500 text-white rounded-lg w-7 h-7 flex items-center justify-center font-bold text-lg shrink-0"
+                <button className={`text-white rounded-lg w-7 h-7 flex items-center justify-center font-bold text-lg shrink-0
+                                    ${isAdded ? "bg-green-500" : "bg-blue-500"}
+                `}
                     onClick={(event) =>{
                         event.stopPropagation()
-                        onAdd(movie)
-                    }}>+</button>
+                        isAdded ? onRemove(movie) : onAdd(movie)
+                    }}>{isAdded ? <Check size={20}/> : <Plus size={20}/>}</button>
             </div>
         </div>
     )

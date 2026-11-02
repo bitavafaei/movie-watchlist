@@ -38,7 +38,7 @@ function App() {
   return (
     <>
         <Routes>
-            <Route path="/" element={<Discovery onAddToWatchlist={addToWatchlist}/>}/>
+            <Route path="/" element={<Discovery onAddToWatchlist={addToWatchlist} watchlist={watchlist} onRemove={removeFromWatchlist}/>}/>
             <Route path="/watchlist" element={<Watchlist watchlist={watchlist} onRemove={removeFromWatchlist} watched={watched} markAsWatched={markAsWatched}/>}/>
             <Route path="/movie/:id" element={<MovieDetails onAddToWatchlist={addToWatchlist} watchlist={watchlist} onRemove={removeFromWatchlist}/>} />
         </Routes>
