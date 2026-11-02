@@ -16,9 +16,9 @@ export default function Watchlist({watchlist, onRemove, watched, markAsWatched})
     }
 
     return(
-        <div>
+        <div className="bg-[#141B2B] min-h-screen">
             <Header/>
-            <div className="bg-[#141B2B] p-5">
+            <div className="p-5">
                 <div className="mx-auto w-full max-w-6xl">
                     <div className="flex justify-between items-center py-4">
                         <h1 className="text-white text-3xl font-bold">My Watchlist</h1>
