@@ -1,6 +1,7 @@
 import WatchlistItem from "./WatchlistItem";
 import Header from "./Header";
 import { useState } from "react";
+import { Clapperboard, CheckCircle, Clock } from "lucide-react";
 
 export default function Watchlist({watchlist, onRemove, watched, markAsWatched}) {
     const[filter, setFilter] = useState("All")
@@ -15,6 +16,12 @@ export default function Watchlist({watchlist, onRemove, watched, markAsWatched})
         filteredWatchlist = watchlist.filter((movie) => !watched.some((item) => item.id === movie.id))
     }
 
+    const watchedCount = watchlist.filter((movie) =>
+        watched.some((item) => item.id === movie.id)
+    ).length
+
+    const unwatchedCount = watchlist.length - watchedCount
+
     return(
         <div className="bg-[#141B2B] min-h-screen">
             <Header/>
@@ -22,9 +29,19 @@ export default function Watchlist({watchlist, onRemove, watched, markAsWatched})
                 <div className="mx-auto w-full max-w-6xl">
                     <div className="flex justify-between items-center py-4">
                         <h1 className="text-white text-3xl font-bold">My Watchlist</h1>
-                        <div className="flex gap-2">
-                            <button className="w-fit h-10 max-w-md rounded-4xl bg-slate-500 text-lg text-white px-4">Movies: {watchlist.length}</button>
-                            <button className="w-fit h-10 max-w-md rounded-4xl bg-slate-500 text-lg text-white px-4">Watched Movies: {watched.length}</button>
+                        <div className="flex flex-wrap gap-2">
+                            <div className="bg-blue-800 text-white items-center flex w-fit h-10 max-w-md rounded-4xl text-lg px-4 gap-2">
+                                <Clapperboard size={20}/>
+                                <div>Total Movies: {watchlist.length}</div>
+                            </div>
+                            <div className="bg-green-700 text-white items-center flex w-fit h-10 max-w-md rounded-4xl text-lg px-4 gap-2">
+                                <CheckCircle size={20}/>
+                                <div>Watched: {watchedCount}</div>
+                            </div>
+                            <div className="bg-orange-700 text-white items-center flex w-fit h-10 max-w-md rounded-4xl text-lg px-4 gap-2">
+                                <Clock size={20}/>
+                                <div>Unwatched: {unwatchedCount}</div>
+                            </div>
                         </div>
                     </div>
                     <h2 className="text-slate-400 text-xl font-bold">Filters</h2>
