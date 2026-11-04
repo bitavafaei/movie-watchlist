@@ -35,10 +35,15 @@ export default function Header() {
                 </Link>
             </nav>
             <div className="flex items-center text-slate-300 gap-4">
-                <Bell/>
-                <button className="bg-slate-300 rounded-full p-2">
-                    <User className="text-[#1f2a3c]"/>
-                </button>
+                <Bell className="cursor-pointer transition-colors hover:text-yellow-400"/>
+                <Link to= "/profile" className={`rounded-full p-2 transition-colors
+                        ${location.pathname === "/profile"
+                            ? "bg-blue-600 text-blue-200 hover:bg-blue-800"
+                            : "bg-slate-300 text-[#1f2a3c] hover:bg-slate-400 hover:text-slate-200"
+                        }
+                    `}>
+                    <User/>
+                </Link>
             </div>
         </header>
     )

@@ -4,6 +4,7 @@ import MovieDetails from "./components/MovieDetails";
 import WatchedMovies from "./components/WatchedMovies";
 import Watchlist from "./components/Watchlist";
 import { Route, Routes } from "react-router";
+import Profile from "./components/Profile";
 
 function App() {
 
@@ -43,6 +44,7 @@ function App() {
             <Route path="/watchlist" element={<Watchlist watchlist={watchlist} onRemove={removeFromWatchlist} watched={watched} markAsWatched={markAsWatched}/>}/>
             <Route path="/movie/:id" element={<MovieDetails onAddToWatchlist={addToWatchlist} watchlist={watchlist} onRemove={removeFromWatchlist}/>} />
             <Route path="/watched" element={<WatchedMovies onAddToWatchlist={addToWatchlist} watched={watched} watchlist={watchlist} onRemove={removeFromWatchlist}/>} />
+            <Route path="/profile" element={<Profile/>}/>
         </Routes>
     </>
   )
