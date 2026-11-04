@@ -62,7 +62,7 @@ export default function Watchlist({watchlist, onRemove, watched, markAsWatched})
                                 "text-slate-300 bg-slate-500 hover:bg-slate-700"}`}
                             onClick={() => setFilter("Unwatched")}>Unwatched</button>
                     </div>
-                    <hr className="border-slate-400 border-[1px] rounded-md mb-4" />
+                    <hr className="border-slate-700 border-[1px] rounded-md mb-4" />
                     {watchlist.length === 0 ? (
                         <p className="text-slate-400 text-center py-10">
                             Your watchlist is empty.
