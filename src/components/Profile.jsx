@@ -1,20 +1,28 @@
 import { User, Heart, Star, Film , ChevronRight, Image} from "lucide-react";
 import Header from "./Header";
 import StatsBadge from "./StatsBadge";
+import { useState } from "react";
 
-export default function Profile() {
+export default function Profile({watched, watchlist}) {
+    const [username, setUsername] = useState("Movie Lover")
+    const [editingUsername, setEditingUsername] = useState("Movie Lover")
+    const [isEditing, setIsEditing] = useState(false)
+
+    const watchedMoviesCount = watched.length
+    const watchlistMoviesCount = watchlist.length
+
     const stats = [
         {
             id: 1,
             icon: Film,
-            value: 24,
+            value: watchedMoviesCount,
             label: "Watched Movies",
             color: "text-blue-500"
         },
         {
             id: 2,
             icon: Heart,
-            value: 12,
+            value: watchlistMoviesCount,
             label: "My Watchlist",
             color: "text-pink-500"
         },
@@ -26,6 +34,8 @@ export default function Profile() {
             color: "text-yellow-500"
         },
     ]
+
+
     return(
         <div className="bg-[#141B2B] min-h-screen">
             <Header/>
@@ -41,7 +51,7 @@ export default function Profile() {
                             <User size={48} className="text-[#94A3B8]"/>
                             </div>
                             <div className="flex flex-col gap-2">
-                                <p className="text-white font-semibold text-xl">Movie Lover</p>
+                                <p className="text-white font-semibold text-xl">{username}</p>
                                 <p className="text-slate-300 font-medium text-sm">Member since 2026</p>
                             </div>
                         </div>
@@ -63,16 +73,40 @@ export default function Profile() {
                     <div>
                         <h2 className="text-white text-2xl font-semibold mb-4">Account Settings</h2>
                         <div>
-                            <button className="w-full flex flex-row-reverse items-center bg-[#202C3C] text-slate-300 mb-4 justify-between p-4 rounded-lg hover:bg-[#334155] transition-colors cursor-pointer">
-                                <div className="flex flex-row-reverse items-center gap-4">
-                                    <User/>
-                                    <div className="flex flex-col">
-                                        <p className="text-white font-semibold text-lg">Edit Username</p>
-                                        <p className="text-slate-300 font-medium text-sm">Change your display name</p>
+                            <div className="w-full bg-[#202C3C] text-slate-300 mb-4 p-4 rounded-lg">
+                                {isEditing ? (
+                                    <div className="flex flex-col gap-3">
+
+                                        <input
+                                        type="text"
+                                        value={editingUsername}
+                                        onChange={(e) => setEditingUsername(e.target.value)}
+                                        className="rounded-md px-3 py-2 text-white justify-between"
+                                        />
+
+                                        <div className="flex gap-2">
+                                            <button>Save</button>
+                                            <button>Cancel</button>
+                                        </div>
+
                                     </div>
-                                </div>
-                                <ChevronRight/>
-                            </button>
+                                ):(
+                                    <button
+                                        onClick={() => setIsEditing(true)}
+                                        className="`w-full flex flex-row-reverse items-center bg-[#202C3C]"
+                                    >
+                                        <div className="flex flex-row-reverse items-center gap-4">
+                                            <User/>
+                                            <div className="flex flex-col">
+                                                <p className="text-white font-semibold text-lg">Edit Username</p>
+                                                <p className="text-slate-300 font-medium text-sm">Change your display name</p>
+                                            </div>
+                                        </div>
+                                        <ChevronRight/>
+                                    </button>
+                                )}
+                            </div>
+
                             <button className="w-full flex flex-row-reverse items-center bg-[#202C3C] text-slate-300 mb-4 justify-between p-4 rounded-lg hover:bg-[#334155] transition-colors cursor-pointer">
                                 <div className="flex flex-row-reverse items-center gap-4">
                                     <Image/>
