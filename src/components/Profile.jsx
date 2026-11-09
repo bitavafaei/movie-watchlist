@@ -8,6 +8,16 @@ export default function Profile({watched, watchlist}) {
     const [editingUsername, setEditingUsername] = useState("Movie Lover")
     const [isEditing, setIsEditing] = useState(false)
 
+    function handleSave() {
+        setUsername(editingUsername)
+        setIsEditing(false)
+    }
+
+    function handleCancel() {
+        setUsername(username)
+        setIsEditing(false)
+    }
+
     const watchedMoviesCount = watched.length
     const watchlistMoviesCount = watchlist.length
 
@@ -73,27 +83,26 @@ export default function Profile({watched, watchlist}) {
                     <div>
                         <h2 className="text-white text-2xl font-semibold mb-4">Account Settings</h2>
                         <div>
-                            <div className="w-full bg-[#202C3C] text-slate-300 mb-4 p-4 rounded-lg">
+                            <div className="w-full bg-[#202C3C] text-slate-300 mb-4 rounded-lg">
                                 {isEditing ? (
-                                    <div className="flex flex-col gap-3">
-
+                                    <div className="flex flex-col gap-3 [direction:rtl] p-4">
                                         <input
                                         type="text"
                                         value={editingUsername}
                                         onChange={(e) => setEditingUsername(e.target.value)}
-                                        className="rounded-md px-3 py-2 text-white justify-between"
+                                        className="rounded-md px-3 py-2 text-white bg-[#334155] outline-none focus:ring-2 focus:ring-blue-500"
                                         />
 
-                                        <div className="flex gap-2">
-                                            <button>Save</button>
-                                            <button>Cancel</button>
+                                        <div className="flex gap-2 px-3">
+                                            <button onClick={handleCancel}>Cancel</button>
+                                            <button onClick={handleSave}>Save</button>
                                         </div>
 
                                     </div>
                                 ):(
                                     <button
                                         onClick={() => setIsEditing(true)}
-                                        className="`w-full flex flex-row-reverse items-center bg-[#202C3C]"
+                                        className="w-full flex flex-row-reverse items-center justify-between p-4 hover:bg-[#334155] hover:rounded-md transition-colors cursor-pointer"
                                     >
                                         <div className="flex flex-row-reverse items-center gap-4">
                                             <User/>
