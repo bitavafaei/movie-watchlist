@@ -2,6 +2,7 @@ import { User, Heart, Star, Film , ChevronRight, Image} from "lucide-react";
 import Header from "./Header";
 import StatsBadge from "./StatsBadge";
 import { useState } from "react";
+import ProfileInfo from "./ProfileInfo";
 
 export default function Profile({watched, watchlist}) {
     const [username, setUsername] = useState("Movie Lover")
@@ -12,7 +13,7 @@ export default function Profile({watched, watchlist}) {
         const trimmedUsername = editingUsername.trim()
 
         if(!trimmedUsername) return
-        
+
             setUsername(trimmedUsername)
             setEditingUsername(trimmedUsername)
             setIsEditing(false)
@@ -60,18 +61,7 @@ export default function Profile({watched, watchlist}) {
                         <h1 className="text-white text-3xl font-bold">My Profile</h1>
                     </div>
                     <hr className="border-slate-700 border-[1px] rounded-md mb-4" />
-                    <div className="flex flex-row-reverse items-center bg-[#202C3C] text-slate-300 mb-4 justify-between p-4 rounded-lg">
-                        <div className="flex flex-row-reverse items-center gap-4">
-                            <div className="bg-[#334155] rounded-full w-32 h-32 flex justify-center items-center">
-                            <User size={48} className="text-[#94A3B8]"/>
-                            </div>
-                            <div className="flex flex-col gap-2">
-                                <p className="text-white font-semibold text-xl">{username}</p>
-                                <p className="text-slate-300 font-medium text-sm">Member since 2026</p>
-                            </div>
-                        </div>
-                        <button className="bg-[#334155] text-slate-300 rounded-md px-4 py-2 hover:bg-slate-600 transition-colors">Edit Profile</button>
-                    </div>
+                    <ProfileInfo username={username}/>
                     <hr className="border-slate-700 border-[1px] rounded-md mb-4" />
                     <div>
                         <h3 className="text-white text-2xl font-semibold mb-4">My Statistics</h3>
@@ -95,10 +85,6 @@ export default function Profile({watched, watchlist}) {
                                         type="text"
                                         value={editingUsername}
                                         onChange={(e) => setEditingUsername(e.target.value)}
-                                        onClick={() => {
-                                            setEditingUsername(username)
-                                            setIsEditing(true)
-                                        }}
                                         className="rounded-md px-3 py-3 text-white bg-[#334155] outline-none focus:ring-2 focus:ring-blue-500"
                                         />
 
@@ -110,7 +96,10 @@ export default function Profile({watched, watchlist}) {
                                     </div>
                                 ):(
                                     <button
-                                        onClick={() => setIsEditing(true)}
+                                        onClick={() => {
+                                            setEditingUsername(username)
+                                            setIsEditing(true)
+                                        }}
                                         className="w-full flex flex-row-reverse items-center justify-between p-4 hover:bg-[#334155] rounded-md transition-colors cursor-pointer"
                                     >
                                         <div className="flex flex-row-reverse items-center gap-4">
