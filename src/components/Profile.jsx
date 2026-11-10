@@ -1,8 +1,8 @@
 import { User, Heart, Star, Film , ChevronRight, Image} from "lucide-react";
 import Header from "./Header";
-import StatsBadge from "./StatsBadge";
 import { useState } from "react";
 import ProfileInfo from "./ProfileInfo";
+import StatsSection from "./StatsSection";
 
 export default function Profile({watched, watchlist}) {
     const [username, setUsername] = useState("Movie Lover")
@@ -14,9 +14,9 @@ export default function Profile({watched, watchlist}) {
 
         if(!trimmedUsername) return
 
-            setUsername(trimmedUsername)
-            setEditingUsername(trimmedUsername)
-            setIsEditing(false)
+        setUsername(trimmedUsername)
+        setEditingUsername(trimmedUsername)
+        setIsEditing(false)
     }
 
     function handleCancel() {
@@ -63,17 +63,7 @@ export default function Profile({watched, watchlist}) {
                     <hr className="border-slate-700 border-[1px] rounded-md mb-4" />
                     <ProfileInfo username={username}/>
                     <hr className="border-slate-700 border-[1px] rounded-md mb-4" />
-                    <div>
-                        <h3 className="text-white text-2xl font-semibold mb-4">My Statistics</h3>
-                        <div className="grid grid-cols-3 gap-5 mb-4">
-                            {stats.map((stat) =>(
-                                <StatsBadge
-                                    key= {stat.id}
-                                    stat= {stat}
-                                />
-                            ))}
-                        </div>
-                    </div>
+                    <StatsSection stats={stats}/>
                     <hr className="border-slate-700 border-[1px] rounded-md mb-4" />
                     <div>
                         <h2 className="text-white text-2xl font-semibold mb-4">Account Settings</h2>
