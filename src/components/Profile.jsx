@@ -9,12 +9,17 @@ export default function Profile({watched, watchlist}) {
     const [isEditing, setIsEditing] = useState(false)
 
     function handleSave() {
-        setUsername(editingUsername)
-        setIsEditing(false)
+        const trimmedUsername = editingUsername.trim()
+
+        if(!trimmedUsername) return
+        
+            setUsername(trimmedUsername)
+            setEditingUsername(trimmedUsername)
+            setIsEditing(false)
     }
 
     function handleCancel() {
-        setUsername(username)
+        setEditingUsername(username)
         setIsEditing(false)
     }
 
@@ -90,19 +95,23 @@ export default function Profile({watched, watchlist}) {
                                         type="text"
                                         value={editingUsername}
                                         onChange={(e) => setEditingUsername(e.target.value)}
-                                        className="rounded-md px-3 py-2 text-white bg-[#334155] outline-none focus:ring-2 focus:ring-blue-500"
+                                        onClick={() => {
+                                            setEditingUsername(username)
+                                            setIsEditing(true)
+                                        }}
+                                        className="rounded-md px-3 py-3 text-white bg-[#334155] outline-none focus:ring-2 focus:ring-blue-500"
                                         />
 
-                                        <div className="flex gap-2 px-3">
-                                            <button onClick={handleCancel}>Cancel</button>
-                                            <button onClick={handleSave}>Save</button>
+                                        <div className="flex gap-2">
+                                            <button onClick={handleCancel} className="cursor-pointer bg-slate-400 rounded-md text-white w-20 p-2">Cancel</button>
+                                            <button onClick={handleSave} className="cursor-pointer bg-green-700 rounded-md text-white w-20 p-2">Save</button>
                                         </div>
 
                                     </div>
                                 ):(
                                     <button
                                         onClick={() => setIsEditing(true)}
-                                        className="w-full flex flex-row-reverse items-center justify-between p-4 hover:bg-[#334155] hover:rounded-md transition-colors cursor-pointer"
+                                        className="w-full flex flex-row-reverse items-center justify-between p-4 hover:bg-[#334155] rounded-md transition-colors cursor-pointer"
                                     >
                                         <div className="flex flex-row-reverse items-center gap-4">
                                             <User/>
