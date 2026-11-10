@@ -5,11 +5,15 @@ import WatchedMovies from "./components/WatchedMovies";
 import Watchlist from "./components/Watchlist";
 import { Route, Routes } from "react-router";
 import Profile from "./components/Profile";
+import EditProfile from "./components/EditProfile";
 
 function App() {
 
     const[watchlist, setWatchlist] = useState([])
     const[watched, setWatched] = useState([])
+    const [username, setUsername] = useState("Movie Lover");
+    const [avatar, setAvatar] = useState(null);
+    const [bio, setBio] = useState("");
 
     function addToWatchlist(movie) {
         setWatchlist((preWatchlist) =>{
@@ -44,7 +48,8 @@ function App() {
             <Route path="/watchlist" element={<Watchlist watchlist={watchlist} onRemove={removeFromWatchlist} watched={watched} markAsWatched={markAsWatched}/>}/>
             <Route path="/movie/:id" element={<MovieDetails onAddToWatchlist={addToWatchlist} watchlist={watchlist} onRemove={removeFromWatchlist}/>} />
             <Route path="/watched" element={<WatchedMovies onAddToWatchlist={addToWatchlist} watched={watched} watchlist={watchlist} onRemove={removeFromWatchlist}/>} />
-            <Route path="/profile" element={<Profile watched={watched} watchlist={watchlist}/>}/>
+            <Route path="/profile" element={<Profile watched={watched} watchlist={watchlist} username={username} avatar={avatar} bio={bio} setAvatar={setAvatar} setUsername={setUsername}/>}/>
+            <Route path="/edit-profile" element={<EditProfile username={username} avatar={avatar} bio={bio} setBio={setBio} setAvatar={setAvatar} setUsername={setUsername}/>}/>
         </Routes>
     </>
   )

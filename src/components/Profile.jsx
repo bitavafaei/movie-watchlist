@@ -5,11 +5,9 @@ import ProfileInfo from "./ProfileInfo";
 import StatsSection from "./StatsSection";
 import AccountSettings from "./AccountSettings";
 
-export default function Profile({watched, watchlist}) {
-    const [username, setUsername] = useState("Movie Lover")
+export default function Profile({watched, watchlist, username, avatar, bio,setUsername, setAvatar}) {
     const [editingUsername, setEditingUsername] = useState("Movie Lover")
     const [isEditing, setIsEditing] = useState(false)
-    const [avatar, setAvatar] = useState(null)
 
     useEffect(() => {
       return () => {
