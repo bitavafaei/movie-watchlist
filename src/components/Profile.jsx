@@ -1,6 +1,6 @@
 import {Heart, Star, Film} from "lucide-react";
 import Header from "./Header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ProfileInfo from "./ProfileInfo";
 import StatsSection from "./StatsSection";
 import AccountSettings from "./AccountSettings";
@@ -9,6 +9,16 @@ export default function Profile({watched, watchlist}) {
     const [username, setUsername] = useState("Movie Lover")
     const [editingUsername, setEditingUsername] = useState("Movie Lover")
     const [isEditing, setIsEditing] = useState(false)
+    const [avatar, setAvatar] = useState(null)
+
+    useEffect(() => {
+      return () => {
+        if (avatar) {
+            URL.revokeObjectURL(avatar)
+        }
+      }
+    }, [avatar])
+
 
     function handleSave() {
         const trimmedUsername = editingUsername.trim()
@@ -59,7 +69,7 @@ export default function Profile({watched, watchlist}) {
                     <h1 className="text-white text-3xl font-bold">My Profile</h1>
                 </div>
                 <hr className="border-slate-700 border-[1px] rounded-md mb-4" />
-                <ProfileInfo username={username}/>
+                <ProfileInfo username={username} avatar={avatar}/>
                 <hr className="border-slate-700 border-[1px] rounded-md mb-4" />
                 <StatsSection stats={stats}/>
                 <hr className="border-slate-700 border-[1px] rounded-md mb-4" />
@@ -70,6 +80,7 @@ export default function Profile({watched, watchlist}) {
                 editingUsername={editingUsername}
                 setEditingUsername={setEditingUsername}
                 username={username}
+                setAvatar={setAvatar}
                 />
             </div>
         </div>

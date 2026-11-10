@@ -1,7 +1,10 @@
 import { User, ChevronRight, Image} from "lucide-react";
+import { useRef } from "react";
 
 
-export default function AccountSettings({handleCancel, handleSave, isEditing, setIsEditing, setEditingUsername, editingUsername, username}) {
+export default function AccountSettings({handleCancel, handleSave, isEditing, setIsEditing, setEditingUsername, editingUsername, username, setAvatar}) {
+    const fileInputRef = useRef(null)
+
     return(
         <div>
             <h2 className="text-white text-2xl font-semibold mb-4">Account Settings</h2>
@@ -20,7 +23,6 @@ export default function AccountSettings({handleCancel, handleSave, isEditing, se
                                 <button onClick={handleCancel} className="cursor-pointer bg-slate-400 rounded-md text-white w-20 p-2">Cancel</button>
                                 <button onClick={handleSave} className="cursor-pointer bg-green-700 rounded-md text-white w-20 p-2">Save</button>
                             </div>
-
                         </div>
                     ):(
                         <button
@@ -42,7 +44,25 @@ export default function AccountSettings({handleCancel, handleSave, isEditing, se
                     )}
                 </div>
 
-                <button className="w-full flex flex-row-reverse items-center bg-[#202C3C] text-slate-300 mb-4 justify-between p-4 rounded-lg hover:bg-[#334155] transition-colors cursor-pointer">
+                <input
+                    type="file"
+                    ref={fileInputRef}
+                    accept="image/*"
+                    hidden
+                    onChange={(e) =>{
+                        const selectedFile = e.target.files[0]
+
+                        if(!selectedFile) return
+
+                        const imageUrl = URL.createObjectURL(selectedFile)
+                        setAvatar(imageUrl)
+                    }}
+                />
+
+                <button className="w-full flex flex-row-reverse items-center bg-[#202C3C] text-slate-300 mb-4 justify-between p-4 rounded-lg hover:bg-[#334155] transition-colors cursor-pointer"
+                    onClick={() => fileInputRef.current?.click()}
+
+                >
                     <div className="flex flex-row-reverse items-center gap-4">
                         <Image/>
                         <div className="flex flex-col">
