@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Discovery from "./components/Discovery";
 import MovieDetails from "./components/MovieDetails";
 import WatchedMovies from "./components/WatchedMovies";
@@ -14,6 +14,14 @@ function App() {
     const [username, setUsername] = useState("Movie Lover");
     const [avatar, setAvatar] = useState(null);
     const [bio, setBio] = useState("");
+
+    useEffect(() => {
+      return () => {
+        if (avatar) {
+            URL.revokeObjectURL(avatar)
+        }
+      }
+    }, [avatar])
 
     function addToWatchlist(movie) {
         setWatchlist((preWatchlist) =>{

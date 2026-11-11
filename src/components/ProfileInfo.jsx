@@ -1,6 +1,7 @@
 import { User } from "lucide-react";
+import { Link } from "react-router";
 
-export default function ProfileInfo({username, avatar}) {
+export default function ProfileInfo({username, avatar, bio}) {
     return(
         <div className="flex flex-row-reverse items-center bg-[#202C3C] text-slate-300 mb-4 justify-between p-4 rounded-lg">
             <div className="flex flex-row-reverse items-center gap-4">
@@ -17,10 +18,16 @@ export default function ProfileInfo({username, avatar}) {
                 </div>
                 <div className="flex flex-col gap-2">
                     <p className="text-white font-semibold text-xl">{username}</p>
-                    <p className="text-slate-300 font-medium text-sm">Member since 2026</p>
+                    <p className="text-slate-300 font-medium text-sm">{bio}</p>
                 </div>
             </div>
-            <button className="bg-[#334155] text-slate-300 rounded-md px-4 py-2 hover:bg-slate-600 transition-colors">Edit Profile</button>
+
+            <Link
+                to="/edit-profile"
+                className="bg-[#334155] text-slate-300 rounded-md px-4 py-2 hover:bg-slate-600 transition-colors"
+            >
+                Edit Profile
+            </Link>
         </div>
     )
 }
