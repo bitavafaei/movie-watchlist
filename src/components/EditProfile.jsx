@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 export default function EditProfile({username, avatar, bio, setUsername, setBio, setAvatar}) {
     const [editingUsername, setEditingUsername] = useState(username)
     const [editingBio, setEditingBio] = useState(bio)
-    const [editingAvatar, setEditingAvatar] = useState(null)
+    const [editingAvatar, setEditingAvatar] = useState(avatar)
     const navigate = useNavigate()
     const fileInputRef = useRef(null)
 
@@ -18,26 +18,32 @@ export default function EditProfile({username, avatar, bio, setUsername, setBio,
 
         setUsername(trimmedUsername)
         setBio(trimmedBio)
+        setAvatar(editingAvatar)
         navigate("/profile")
     }
 
     function handleCancel() {
+        if(editingAvatar && editingAvatar !== avatar){
+            URL.revokeObjectURL(editingAvatar)
+        }
         navigate("/profile")
     }
+
     return(
         <div className="bg-[#141B2B] min-h-screen">
             <Header/>
-            <div className="mx-auto my-8 w-full max-w-2xl rounded-xl bg-[#202C3C] p-6 text-slate-300">
+            <div className="px-4 py-8">
+            <div className="mx-auto w-full max-w-4xl rounded-xl bg-[#202C3C] p-6 text-slate-300">
                 <div className="flex justify-between items-center py-4">
                     <h2 className="text-white text-3xl font-bold">Edit Profile</h2>
                 </div>
-                <div className="flex flex-col items-center gap-5">
+                <div className="flex flex-col items-center gap-3 py-2">
                     <div className="bg-[#334155] rounded-full w-32 h-32 flex justify-center items-center overflow-hidden">
-                        {avatar ? (
+                        {editingAvatar || avatar ? (
                             <img
-                            src={avatar}
+                            src={editingAvatar || avatar}
                             alt="Profile Avatar"
-                            className="w-full h-full rounded-full object-cover"
+                            className="w-full h-full object-cover"
                             />
                         ) : (
                             <User size={48} className="text-[#94A3B8]"/>
@@ -55,7 +61,7 @@ export default function EditProfile({username, avatar, bio, setUsername, setBio,
                             if(!selectedFile) return
 
                             const imageUrl = URL.createObjectURL(selectedFile)
-                            setAvatar(imageUrl)
+                            setEditingAvatar(imageUrl)
                         }}
                      />
 
@@ -88,6 +94,7 @@ export default function EditProfile({username, avatar, bio, setUsername, setBio,
                     </div>
 
                 </div>
+            </div>
             </div>
         </div>
     )
