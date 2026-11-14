@@ -9,11 +9,28 @@ import EditProfile from "./components/EditProfile";
 
 function App() {
 
-    const[watchlist, setWatchlist] = useState([])
-    const[watched, setWatched] = useState([])
-    const [username, setUsername] = useState("Movie Lover");
+    const[watchlist, setWatchlist] = useState(() => {
+        const savedWatchlist = localStorage.getItem("watchlist")
+
+        return savedWatchlist ? JSON.parse(savedWatchlist) : []
+    })
+    const[watched, setWatched] = useState(() => {
+        const savedWatched = localStorage.getItem("watched")
+
+        return savedWatched ? JSON.parse(savedWatched) : []
+    })
+    const [username, setUsername] = useState(() => {
+        const savedUsername = localStorage.getItem("username")
+
+        return savedUsername || "Movie Lover"
+    });
+    const [bio, setBio] = useState(() => {
+        const savedBio = localStorage.getItem("bio")
+
+        return savedBio || ""
+    });
     const [avatar, setAvatar] = useState(null);
-    const [bio, setBio] = useState("");
+
 
     useEffect(() => {
       return () => {
@@ -22,6 +39,23 @@ function App() {
         }
       }
     }, [avatar])
+
+    useEffect(() => {
+      localStorage.setItem("watchlist", JSON.stringify(watchlist))
+    }, [watchlist])
+
+    useEffect(() => {
+      localStorage.setItem("watched", JSON.stringify(watched))
+    }, [watched])
+
+    useEffect(() => {
+        localStorage.setItem("username", username)
+    },[username])
+
+    useEffect(() => {
+        localStorage.setItem("bio", bio)
+    },[bio])
+
 
     function addToWatchlist(movie) {
         setWatchlist((preWatchlist) =>{
