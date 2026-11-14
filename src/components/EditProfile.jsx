@@ -16,6 +16,10 @@ export default function EditProfile({username, avatar, bio, setUsername, setBio,
 
         if(!trimmedUsername) return
 
+        if(avatar && avatar !== editingAvatar && avatar.startsWith("blob:")){
+            URL.revokeObjectURL(avatar)
+        }
+
         setUsername(trimmedUsername)
         setBio(trimmedBio)
         setAvatar(editingAvatar)
@@ -32,69 +36,111 @@ export default function EditProfile({username, avatar, bio, setUsername, setBio,
     return(
         <div className="bg-[#141B2B] min-h-screen">
             <Header/>
-            <div className="px-4 py-8">
-            <div className="mx-auto w-full max-w-4xl rounded-xl bg-[#202C3C] p-6 text-slate-300">
-                <div className="flex justify-between items-center py-4">
-                    <h2 className="text-white text-3xl font-bold">Edit Profile</h2>
-                </div>
-                <div className="flex flex-col items-center gap-3 py-2">
-                    <div className="bg-[#334155] rounded-full w-32 h-32 flex justify-center items-center overflow-hidden">
-                        {editingAvatar || avatar ? (
-                            <img
-                            src={editingAvatar || avatar}
-                            alt="Profile Avatar"
-                            className="w-full h-full object-cover"
+            <div className="px-4 py-6">
+
+                <div className="mx-auto w-full max-w-4xl rounded-xl bg-[#202C3C] px-6 py-4 text-slate-300">
+
+                    <h2 className="text-white text-3xl font-bold mb-5">Edit Profile</h2>
+
+                    <div className="flex flex-col items-center gap-2 pb-2">
+                        <div className="bg-[#334155] rounded-full w-32 h-32 flex justify-center items-center overflow-hidden">
+                            {editingAvatar || avatar ? (
+                                <img
+                                src={editingAvatar || avatar}
+                                alt="Profile Avatar"
+                                className="w-full h-full object-cover"
+                                />
+                            ) : (
+                                <User size={48} className="text-[#94A3B8]"/>
+                            )}
+                        </div>
+
+                        <h2 className="text-white text-lg font-semibold">
+                            {editingUsername || "Movie Lover"}
+                        </h2>
+
+                        <p className="text-slate-400 text-sm">
+                            Change your profile picture
+                        </p>
+
+                        <button className="bg-[#334155] text-slate-200 px-4 py-2 rounded-lg hover:bg-[#475569] transition-colors cursor-pointer"
+                            onClick={() => fileInputRef.current?.click()}>
+                            Change Avatar
+                        </button>
+
+                        <input
+                            type="file"
+                            ref={fileInputRef}
+                            accept="image/*"
+                            hidden
+                            onChange={(e) =>{
+                                const selectedFile = e.target.files[0]
+
+                                if(!selectedFile) return
+
+                                if(editingAvatar && editingAvatar !== avatar && editingAvatar.startsWith("blob:")){
+                                    URL.revokeObjectURL(editingAvatar)
+                                }
+
+                                const imageUrl = URL.createObjectURL(selectedFile)
+                                setEditingAvatar(imageUrl)
+
+                                e.target.value = ""
+                            }}
+                        />
+
+                    </div>
+
+                    <hr className="border-slate-600 rounded-md my-4" />
+
+                    <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-2">
+                            <label className="text-white text-right">
+                                Username
+                            </label>
+
+                            <input
+                                type="text"
+                                className="w-full rounded-md px-4 py-3 text-slate-300 text-right bg-[#334155] outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-slate-400 transition-all"
+                                value={editingUsername}
+                                onChange={(e) => setEditingUsername(e.target.value)}
+                                placeholder="Enter your username"
                             />
-                        ) : (
-                            <User size={48} className="text-[#94A3B8]"/>
-                        )}
+                        </div>
+
+                        <div className="flex flex-col gap-2">
+                            <label className="text-white text-right">
+                                Bio
+                            </label>
+
+                            <input
+                                type="text"
+                                className="w-full rounded-md px-4 py-3 text-right text-slate-300 bg-[#334155] outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-slate-400 transition-all"
+                                value={editingBio}
+                                onChange={(e) => setEditingBio(e.target.value)}
+                                placeholder="Tell us about yourself ..."
+                            />
+                        </div>
+
                     </div>
 
-                    <input
-                        type="file"
-                        ref={fileInputRef}
-                        accept="image/*"
-                        hidden
-                        onChange={(e) =>{
-                            const selectedFile = e.target.files[0]
+                    <div className="flex gap-2 mt-4 justify-end">
+                        <button
+                            onClick={handleCancel}
+                            className="cursor-pointer bg-slate-500 hover:bg-slate-400 rounded-md text-white px-4 py-2 transition-colors">
+                                Cancel
+                        </button>
 
-                            if(!selectedFile) return
+                        <button
+                            onClick={handleSave}
+                            className="cursor-pointer bg-green-700 hover:bg-green-600 rounded-md text-white px-4 py-2 transition-colors">
+                                Save
+                        </button>
 
-                            const imageUrl = URL.createObjectURL(selectedFile)
-                            setEditingAvatar(imageUrl)
-                        }}
-                     />
-
-                    <button className="w-full flex items-center bg-[#202C3C] text-slate-300 mb-4 justify-between p-4 rounded-lg hover:bg-[#334155] transition-colors cursor-pointer"
-                        onClick={() => fileInputRef.current?.click()}>
-                        <p className="text-white font-semibold text-lg">Change Avatar</p>
-                    </button>
-
-                    <hr className="border-slate-700 border-[1px] rounded-md mb-4" />
-
-                    <div className="flex flex-col gap-2 w-full [direction:rtl]">
-                        <label htmlFor="" className="text-white">Username</label>
-                        <input type="text" className="rounded-md px-3 py-3 text-slate-300 bg-[#334155] outline-none focus:ring-2 focus:ring-blue-500"
-                        value={editingUsername}
-                        onChange={(e) => setEditingUsername(e.target.value)}
-                        />
-                    </div>
-
-                    <div className="flex flex-col gap-2 w-full [direction:rtl]">
-                        <label htmlFor="" className="text-white">Bio</label>
-                        <input type="text" className="rounded-md px-3 py-3 text-slate-300 bg-[#334155] outline-none focus:ring-2 focus:ring-blue-500"
-                            value={editingBio}
-                            onChange={(e) => setEditingBio(e.target.value)}
-                        />
-                    </div>
-
-                    <div className="flex gap-2">
-                        <button onClick={handleCancel} className="cursor-pointer bg-slate-400 rounded-md text-white w-20 p-2">Cancel</button>
-                        <button onClick={handleSave} className="cursor-pointer bg-green-700 rounded-md text-white w-20 p-2">Save</button>
                     </div>
 
                 </div>
-            </div>
+
             </div>
         </div>
     )
