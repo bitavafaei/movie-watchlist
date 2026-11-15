@@ -3,7 +3,7 @@ import CardsList from "./CardsList";
 import Header from "./Header";
 import { useState } from "react";
 
-export default function Discovery({onAddToWatchlist, watchlist, onRemove}) {
+export default function Discovery({onAddToWatchlist, watchlist, onRemove, favorites, toggleFavorites}) {
     const [searchTerm, setSearchTerm] = useState("")
     return(
         <div>
@@ -18,6 +18,8 @@ export default function Discovery({onAddToWatchlist, watchlist, onRemove}) {
                     searchTerm={searchTerm}
                     watchlist={watchlist}
                     onRemove={onRemove}
+                    favorites={favorites}
+                    toggleFavorites={toggleFavorites}
                 />
             </div>
         </div>

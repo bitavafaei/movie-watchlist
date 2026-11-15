@@ -3,8 +3,7 @@ import { useParams, useNavigate } from "react-router";
 import { movies } from "../data/movies";
 import { ChevronLeft } from "lucide-react";
 
-export default function MovieDetails({onAddToWatchlist, watchlist, onRemove}) {
-
+export default function MovieDetails({onAddToWatchlist, watchlist, onRemove, favorites, toggleFavorites}) {
     const {id} = useParams()
     const selectedMovie = movies.find((movie) =>(
         String(movie.id) === id))
@@ -14,6 +13,8 @@ export default function MovieDetails({onAddToWatchlist, watchlist, onRemove}) {
     }
 
     const addedMovie = watchlist.some((movie) => movie.id === selectedMovie.id)
+
+    const favoriteMovie = favorites.some((item) => item.id === selectedMovie.id)
 
     const navigate = useNavigate()
 
@@ -52,7 +53,7 @@ export default function MovieDetails({onAddToWatchlist, watchlist, onRemove}) {
                         </div>
                         <button className={`mt-5 w-full max-w-md rounded-md py-3 text-lg font-semibold text-white transition-colors duration-300
                         ${addedMovie
-                            ? "bg-red-500"
+                            ? "bg-green-500"
                             :  "bg-blue-500"
                         }`}
                             onClick={() => {addedMovie
@@ -61,7 +62,21 @@ export default function MovieDetails({onAddToWatchlist, watchlist, onRemove}) {
                             }}>{addedMovie
                             ? "Remove from Watchlist"
                             : "Add to Watchlist"
-                        }</button>
+                        }
+                        </button>
+                        <button className={`mt-5 w-full max-w-md rounded-md py-3 text-lg font-semibold text-white transition-colors duration-300
+                        ${favoriteMovie
+                            ? "bg-red-500"
+                            :  "bg-blue-500"
+                        }`}
+                            onClick={() => {toggleFavorites(selectedMovie)
+                            }}>
+
+                            {favoriteMovie
+                                ? "Remove from your favorites"
+                                : "Add to your favorites"
+                            }
+                        </button>
                     </div>
                 </div>
             </div>

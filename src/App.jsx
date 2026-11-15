@@ -97,12 +97,21 @@ function App() {
         })
     }
 
+    function toggleFavorites(movie) {
+        setFavorites((preFavorites) => {
+            if(preFavorites.some((item) => item.id === movie.id)){
+                return preFavorites.filter((item) => item.id !== movie.id)
+            }
+            return [...preFavorites, movie]
+        })
+    }
+
   return (
     <>
         <Routes>
-            <Route path="/" element={<Discovery onAddToWatchlist={addToWatchlist} watchlist={watchlist} onRemove={removeFromWatchlist}/>}/>
+            <Route path="/" element={<Discovery onAddToWatchlist={addToWatchlist} watchlist={watchlist} onRemove={removeFromWatchlist} favorites={favorites} toggleFavorites={toggleFavorites}/>}/>
             <Route path="/watchlist" element={<Watchlist watchlist={watchlist} onRemove={removeFromWatchlist} watched={watched} markAsWatched={markAsWatched}/>}/>
-            <Route path="/movie/:id" element={<MovieDetails onAddToWatchlist={addToWatchlist} watchlist={watchlist} onRemove={removeFromWatchlist}/>} />
+            <Route path="/movie/:id" element={<MovieDetails onAddToWatchlist={addToWatchlist} watchlist={watchlist} onRemove={removeFromWatchlist} favorites={favorites} toggleFavorites={toggleFavorites}/>} />
             <Route path="/watched" element={<WatchedMovies onAddToWatchlist={addToWatchlist} watched={watched} watchlist={watchlist} onRemove={removeFromWatchlist}/>} />
             <Route path="/profile" element={<Profile watched={watched} watchlist={watchlist} username={username} avatar={avatar} bio={bio} setAvatar={setAvatar} setUsername={setUsername}/>}/>
             <Route path="/edit-profile" element={<EditProfile username={username} avatar={avatar} bio={bio} setBio={setBio} setAvatar={setAvatar} setUsername={setUsername}/>}/>
