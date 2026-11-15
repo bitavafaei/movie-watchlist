@@ -16,10 +16,6 @@ export default function EditProfile({username, avatar, bio, setUsername, setBio,
 
         if(!trimmedUsername) return
 
-        if(avatar && avatar !== editingAvatar && avatar.startsWith("blob:")){
-            URL.revokeObjectURL(avatar)
-        }
-
         setUsername(trimmedUsername)
         setBio(trimmedBio)
         setAvatar(editingAvatar)
@@ -27,9 +23,6 @@ export default function EditProfile({username, avatar, bio, setUsername, setBio,
     }
 
     function handleCancel() {
-        if(editingAvatar && editingAvatar !== avatar){
-            URL.revokeObjectURL(editingAvatar)
-        }
         navigate("/profile")
     }
 
@@ -78,12 +71,13 @@ export default function EditProfile({username, avatar, bio, setUsername, setBio,
 
                                 if(!selectedFile) return
 
-                                if(editingAvatar && editingAvatar !== avatar && editingAvatar.startsWith("blob:")){
-                                    URL.revokeObjectURL(editingAvatar)
+                                const reader = new FileReader()
+
+                                reader.onload = () => {
+                                    setEditingAvatar(reader.result)
                                 }
 
-                                const imageUrl = URL.createObjectURL(selectedFile)
-                                setEditingAvatar(imageUrl)
+                                reader.readAsDataURL(selectedFile)
 
                                 e.target.value = ""
                             }}

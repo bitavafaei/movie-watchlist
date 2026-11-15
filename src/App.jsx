@@ -29,16 +29,11 @@ function App() {
 
         return savedBio || ""
     });
-    const [avatar, setAvatar] = useState(null);
+    const [avatar, setAvatar] = useState(() => {
+        const savedAvatar = localStorage.getItem("avatar")
 
-
-    useEffect(() => {
-      return () => {
-        if (avatar) {
-            URL.revokeObjectURL(avatar)
-        }
-      }
-    }, [avatar])
+        return savedAvatar || null
+    });
 
     useEffect(() => {
       localStorage.setItem("watchlist", JSON.stringify(watchlist))
@@ -55,6 +50,14 @@ function App() {
     useEffect(() => {
         localStorage.setItem("bio", bio)
     },[bio])
+
+    useEffect(() => {
+        if(avatar){
+            localStorage.setItem("avatar", avatar)
+        } else {
+            localStorage.removeItem("avatar")
+        }
+    },[avatar])
 
 
     function addToWatchlist(movie) {
