@@ -35,6 +35,12 @@ function App() {
         return savedAvatar || null
     });
 
+    const [favorites, setFavorites] = useState(() => {
+        const savedFavorites = localStorage.getItem("favorites")
+
+        return savedFavorites ? JSON.parse(savedFavorites) : []
+    })
+
     useEffect(() => {
       localStorage.setItem("watchlist", JSON.stringify(watchlist))
     }, [watchlist])
@@ -58,6 +64,11 @@ function App() {
             localStorage.removeItem("avatar")
         }
     },[avatar])
+
+    useEffect(() => {
+      localStorage.setItem("favorites", JSON.stringify(favorites))
+    }, [favorites])
+
 
 
     function addToWatchlist(movie) {
