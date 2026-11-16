@@ -6,18 +6,27 @@ import Watchlist from "./components/Watchlist";
 import { Route, Routes } from "react-router";
 import Profile from "./components/Profile";
 import EditProfile from "./components/EditProfile";
+import Favorites from "./components/Favorites";
 
 function App() {
 
     const[watchlist, setWatchlist] = useState(() => {
         const savedWatchlist = localStorage.getItem("watchlist")
 
-        return savedWatchlist ? JSON.parse(savedWatchlist) : []
+        if(!savedWatchlist) return []
+
+        const parseWatchlist = JSON.parse(savedWatchlist)
+
+        return Array.isArray(parseWatchlist) ? parseWatchlist : []
     })
     const[watched, setWatched] = useState(() => {
         const savedWatched = localStorage.getItem("watched")
 
-        return savedWatched ? JSON.parse(savedWatched) : []
+        if(!savedWatched) return []
+
+        const parseWatched = JSON.parse(savedWatched)
+
+        return Array.isArray(parseWatched) ? parseWatched : []
     })
     const [username, setUsername] = useState(() => {
         const savedUsername = localStorage.getItem("username")
@@ -38,7 +47,11 @@ function App() {
     const [favorites, setFavorites] = useState(() => {
         const savedFavorites = localStorage.getItem("favorites")
 
-        return savedFavorites ? JSON.parse(savedFavorites) : []
+        if(!savedFavorites) return []
+
+        const parseFavorites= JSON.parse(savedFavorites)
+
+        return Array.isArray(parseFavorites) ? parseFavorites : []
     })
 
     useEffect(() => {
@@ -115,6 +128,7 @@ function App() {
             <Route path="/watched" element={<WatchedMovies onAddToWatchlist={addToWatchlist} watched={watched} watchlist={watchlist} onRemove={removeFromWatchlist}/>} />
             <Route path="/profile" element={<Profile watched={watched} watchlist={watchlist} username={username} avatar={avatar} bio={bio} setAvatar={setAvatar} setUsername={setUsername}/>}/>
             <Route path="/edit-profile" element={<EditProfile username={username} avatar={avatar} bio={bio} setBio={setBio} setAvatar={setAvatar} setUsername={setUsername}/>}/>
+            <Route path="/favorites" element={<Favorites favorites={favorites} toggleFavorites={toggleFavorites} watchlist={watchlist} onRemove={removeFromWatchlist} onAddToWatchlist={addToWatchlist}/>}/>
         </Routes>
     </>
   )

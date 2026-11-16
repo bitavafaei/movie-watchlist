@@ -2,7 +2,7 @@ import { Search } from "lucide-react";
 
 export default function SearchBar({searchTerm, setSearchTerm}) {
     return(
-        <div className="flex items-center bg-white text-slate-700 rounded-lg overflow-hidden">
+        <div className="flex items-center bg-[#242D3E] text-white rounded-lg overflow-hidden">
             <div className="flex flex-1 items-center px-4 py-2 gap-4">
                 <Search/>
                 <input type="search" name="Search" id="site search" placeholder="Search movies..."

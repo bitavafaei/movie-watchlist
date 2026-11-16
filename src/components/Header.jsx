@@ -1,4 +1,4 @@
-import { Heart, Star, User, Check, Bell } from "lucide-react";
+import { Heart, Star, User, Check, Video } from "lucide-react";
 import { Link, useLocation } from "react-router";
 
 export default function Header() {
@@ -21,7 +21,7 @@ export default function Header() {
                             : "text-slate-300 hover:text-blue-300"
                         }
                     `}>
-                    <Heart size={18}/>
+                    <Video size={18}/>
                     <span>Watchlist</span>
                 </Link>
                 <Link to="/watched" className={`flex gap-2 items-center py-3 transition-colors
@@ -32,6 +32,15 @@ export default function Header() {
                     `}>
                     <Check size={18}/>
                     <span>Watched</span>
+                </Link>
+                <Link to="/favorites" className={`flex gap-2 items-center py-3 transition-colors
+                        ${location.pathname === "/favorites"
+                            ? "text-blue-400 border-blue-400 border-b-2"
+                            : "text-slate-300 hover:text-blue-300"
+                        }
+                    `}>
+                    <Heart size={18}/>
+                    <span>Favorites</span>
                 </Link>
             </nav>
 

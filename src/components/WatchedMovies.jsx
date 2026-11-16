@@ -2,7 +2,7 @@ import Header from "./Header";
 import WatchlistItem from "./WatchlistItem";
 import { CheckCircle } from "lucide-react";
 
-export default function WatchedMovies({watched, onRemove, markAsWatched, watchlist}) {
+export default function WatchedMovies({watched, onRemove, markAsWatched}) {
     const watchedCount = watched.length
     return(
         <div className="bg-[#141B2B] min-h-screen">
