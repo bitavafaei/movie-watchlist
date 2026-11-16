@@ -126,7 +126,7 @@ function App() {
             <Route path="/watchlist" element={<Watchlist watchlist={watchlist} onRemove={removeFromWatchlist} watched={watched} markAsWatched={markAsWatched}/>}/>
             <Route path="/movie/:id" element={<MovieDetails onAddToWatchlist={addToWatchlist} watchlist={watchlist} onRemove={removeFromWatchlist} favorites={favorites} toggleFavorites={toggleFavorites}/>} />
             <Route path="/watched" element={<WatchedMovies onAddToWatchlist={addToWatchlist} watched={watched} watchlist={watchlist} onRemove={removeFromWatchlist}/>} />
-            <Route path="/profile" element={<Profile watched={watched} watchlist={watchlist} username={username} avatar={avatar} bio={bio} setAvatar={setAvatar} setUsername={setUsername}/>}/>
+            <Route path="/profile" element={<Profile watched={watched} watchlist={watchlist} username={username} avatar={avatar} bio={bio} setAvatar={setAvatar} setUsername={setUsername} favorites={favorites}/>}/>
             <Route path="/edit-profile" element={<EditProfile username={username} avatar={avatar} bio={bio} setBio={setBio} setAvatar={setAvatar} setUsername={setUsername}/>}/>
             <Route path="/favorites" element={<Favorites favorites={favorites} toggleFavorites={toggleFavorites} watchlist={watchlist} onRemove={removeFromWatchlist} onAddToWatchlist={addToWatchlist}/>}/>
         </Routes>

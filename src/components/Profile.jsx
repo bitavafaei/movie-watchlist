@@ -5,7 +5,7 @@ import ProfileInfo from "./ProfileInfo";
 import StatsSection from "./StatsSection";
 import AccountSettings from "./AccountSettings";
 
-export default function Profile({watched, watchlist, username, avatar, bio,setUsername, setAvatar}) {
+export default function Profile({watched, watchlist, username, avatar, bio,setUsername, setAvatar, favorites}) {
     const [editingUsername, setEditingUsername] = useState("Movie Lover")
     const [isEditing, setIsEditing] = useState(false)
 
@@ -26,6 +26,7 @@ export default function Profile({watched, watchlist, username, avatar, bio,setUs
 
     const watchedMoviesCount = watched.length
     const watchlistMoviesCount = watchlist.length
+    const favoriteMoviesCount = favorites.length
 
     const stats = [
         {
@@ -37,17 +38,17 @@ export default function Profile({watched, watchlist, username, avatar, bio,setUs
         },
         {
             id: 2,
-            icon: Heart,
+            icon: Star,
             value: watchlistMoviesCount,
             label: "My Watchlist",
-            color: "text-pink-500"
+            color: "text-yellow-500"
         },
         {
             id: 3,
-            icon: Star,
-            value: 8,
+            icon: Heart,
+            value: favoriteMoviesCount,
             label: "Favorites",
-            color: "text-yellow-500"
+            color: "text-pink-500"
         },
     ]
     return(

@@ -1,9 +1,23 @@
 import { movies } from "../data/movies";
 import Card from "./Card";
 
-export default function CardsList({onAddToWatchlist, searchTerm, watchlist, onRemove, favorites, toggleFavorites}) {
-    const filteredMovie = movies.filter((movie) => movie.title.toLowerCase().includes(searchTerm.toLowerCase()))
-    if(filteredMovie.length === 0){
+export default function CardsList({onAddToWatchlist, searchTerm, watchlist, onRemove, favorites, toggleFavorites, selectedGenre}) {
+    const filteredMovie = movies.filter((movie) => {
+        const matchesSearch = movie.title
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase())
+
+        const movieGenres = movie.genre
+            .split(",")
+            .map((genre) => genre.trim())
+
+        const matchesGenre =
+            selectedGenre === "All" ||
+            movieGenres.includes(selectedGenre)
+
+        return matchesGenre && matchesSearch
+    })
+        if(filteredMovie.length === 0){
         return <p
         className="text-center text-slate-300 mt-16 font-semibold text-lg">
             No movies found.
