@@ -7,7 +7,11 @@ export default function Discovery({onAddToWatchlist, watchlist, onRemove, favori
     const [searchTerm, setSearchTerm] = useState("")
     const [selectedGenre, setSelectedGenre] = useState("All")
     const [sortBy, setSortBy] = useState("default")
-
+    const clearFilters = () => {
+        setSortBy("default")
+        setSearchTerm("")
+        setSelectedGenre("All")
+    }
     return(
         <div className="bg-[#141B2B] min-h-screen">
             <Header/>
@@ -19,7 +23,7 @@ export default function Discovery({onAddToWatchlist, watchlist, onRemove, favori
                             setSearchTerm={setSearchTerm}
                         />
                     </div>
-                    <div className="flex items-center gap-3 my-4">
+                    <div className="flex flex-wrap items-center gap-3 my-4">
                         <label className="text-white font-semibold">Genre:</label>
                         <select
                             value={selectedGenre}
@@ -47,6 +51,13 @@ export default function Discovery({onAddToWatchlist, watchlist, onRemove, favori
                             <option value="year-new">Year: Newest First</option>
                             <option value="year-old">Year: Oldest First</option>
                         </select>
+
+                        <button
+                            onClick={clearFilters}
+                            className="bg-[#242D3E] text-white rounded-md px-3 py-2 border border-slate-600 ml-auto"
+                        >
+                            Clear Filters
+                        </button>
                     </div>
 
                     <CardsList

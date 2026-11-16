@@ -9,7 +9,7 @@ export default function Card({movie, onAdd, isAdded, onRemove, favorites, toggle
 
     const isFavorite = favorites.some((item) => item.id === movie.id)
     return(
-        <div className="flex flex-col items-start bg-[#242D3E] w-fit p-2 rounded-2xl"
+        <div className="flex flex-col items-start bg-[#242D3E] w-fit p-2 rounded-2xl cursor-pointer"
             onClick={handleCardClick}>
             <img src={movie.poster}
             alt={movie.title}

@@ -4,6 +4,7 @@ import { movies } from "../data/movies";
 import { ChevronLeft } from "lucide-react";
 
 export default function MovieDetails({onAddToWatchlist, watchlist, onRemove, favorites, toggleFavorites}) {
+    const navigate = useNavigate()
     const {id} = useParams()
     const selectedMovie = movies.find((movie) =>(
         String(movie.id) === id))
@@ -16,8 +17,6 @@ export default function MovieDetails({onAddToWatchlist, watchlist, onRemove, fav
 
     const favoriteMovie = favorites.some((item) => item.id === selectedMovie.id)
 
-    const navigate = useNavigate()
-
     return(
         <div>
             <Header/>
@@ -27,11 +26,11 @@ export default function MovieDetails({onAddToWatchlist, watchlist, onRemove, fav
                     <ChevronLeft size={20}/>
                     <span>Back</span>
                 </button>
-                <div className="flex items-center gap-16">
+                <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16 w-full max-w-6xl md:items-start">
                     <img src={selectedMovie.poster}
                     alt={selectedMovie.title}
-                    className="w-72 md:w-80 h-[450px] rounded-xl object-cover" />
-                    <div className="max-w-xl">
+                    className="w-64 sm:w-72 md:w-80 h-[400px] sm:h-[450px] rounded-xl object-cover shrink-0" />
+                    <div className="w-full max-w-xl">
                         <h1 className="text-white text-4xl font-bold">{selectedMovie.title}</h1>
                         <h2 className="text-slate-400 text-lg">{selectedMovie.year} . {selectedMovie.length} </h2>
                         <h2 className="text-slate-400 text-lg">Genres: {selectedMovie.genre}</h2>
@@ -43,7 +42,7 @@ export default function MovieDetails({onAddToWatchlist, watchlist, onRemove, fav
                         </div>
                         <div className="mt-5">
                             <h3 className="text-white text-lg font-semibold">Overview</h3>
-                            <p className="text-slate-400 w-100 text-sm">{selectedMovie.overview}</p>
+                            <p className="text-slate-400 w-full text-sm leading-6">{selectedMovie.overview}</p>
                         </div>
                         <div className="mt-5">
                             <h3 className="text-white text-lg font-semibold">Top Cast</h3>
