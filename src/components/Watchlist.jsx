@@ -27,25 +27,25 @@ export default function Watchlist({watchlist, onRemove, watched, markAsWatched})
             <Header/>
             <div className="p-5">
                 <div className="mx-auto w-full max-w-6xl">
-                    <div className="flex justify-between items-center py-4">
-                        <h1 className="text-white text-3xl font-bold">My Watchlist</h1>
+                    <div className="flex flex-col lg:flex-row gap-4 lg:justify-between lg:items-center py-4">
+                        <h1 className="text-white text-2xl sm:text-3xl font-bold">My Watchlist</h1>
                         <div className="flex flex-wrap gap-2">
-                            <div className="bg-blue-800 text-white items-center flex w-fit h-10 max-w-md rounded-4xl text-lg px-4 gap-2">
+                            <div className="bg-blue-800 text-white items-center flex w-fit h-10 max-w-md rounded-4xl text-sm sm:text-lg px-3 sm:px-4 gap-2">
                                 <Clapperboard size={20}/>
                                 <div>Total Movies: {watchlist.length}</div>
                             </div>
-                            <div className="bg-green-700 text-white items-center flex w-fit h-10 max-w-md rounded-4xl text-lg px-4 gap-2">
+                            <div className="bg-green-700 text-white items-center flex w-fit h-10 max-w-md rounded-4xl text-sm sm:text-lg px-3 sm:px-4 gap-2">
                                 <CheckCircle size={20}/>
                                 <div>Watched: {watchedCount}</div>
                             </div>
-                            <div className="bg-orange-700 text-white items-center flex w-fit h-10 max-w-md rounded-4xl text-lg px-4 gap-2">
+                            <div className="bg-orange-700 text-white items-center flex w-fit h-10 max-w-md rounded-4xl text-sm sm:text-lg px-3 sm:px-4 gap-2">
                                 <Clock size={20}/>
                                 <div>Unwatched: {unwatchedCount}</div>
                             </div>
                         </div>
                     </div>
                     <h2 className="text-slate-400 text-xl font-bold">Filters</h2>
-                    <div className="flex gap-2 my-4">
+                    <div className="flex flex-wrap gap-2 my-4">
                         <button className={`w-fit px-2 h-10 max-w-md rounded-md text-lg transition-colors
                             ${filter === "All"
                                 ? "text-white bg-blue-500 hover:bg-blue-900"
