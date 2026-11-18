@@ -9,9 +9,9 @@ export default function WatchedMovies({watched, onRemove, markAsWatched}) {
             <Header/>
             <div className="p-5">
                 <div className="mx-auto w-full max-w-6xl">
-                    <div className="flex justify-between items-center py-4">
-                        <h1 className="text-white text-3xl font-bold">Watched Movies</h1>
-                        <div className="bg-green-700 text-white items-center flex w-fit h-10 max-w-md rounded-4xl text-lg px-4 gap-2">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 py-4">
+                        <h1 className="text-white text-2xl sm:text-3xl font-bold">Watched Movies</h1>
+                        <div className="bg-green-700 text-white items-center flex w-fit h-10 rounded-4xl text-sm sm:text-lg px-3 sm:px-4 gap-2">
                             <CheckCircle size={20}/>
                             <div>Watched Movies: {watchedCount} </div>
                         </div>
