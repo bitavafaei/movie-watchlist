@@ -7,7 +7,7 @@ export default function AccountSettings({handleCancel, handleSave, isEditing, se
 
     return(
         <div>
-            <h2 className="text-white text-2xl font-semibold mb-4">Account Settings</h2>
+            <h2 className="text-white text-xl sm:text-2xl font-semibold mb-4">Account Settings</h2>
             <div>
                 <div className="w-full bg-[#202C3C] text-slate-300 mb-4 rounded-lg">
                     {isEditing ? (
@@ -16,12 +16,16 @@ export default function AccountSettings({handleCancel, handleSave, isEditing, se
                             type="text"
                             value={editingUsername}
                             onChange={(e) => setEditingUsername(e.target.value)}
-                            className="rounded-md px-3 py-3 text-white bg-[#334155] outline-none focus:ring-2 focus:ring-blue-500"
+                            className="rounded-md p-3 w-full min-w-0 text-white bg-[#334155] outline-none focus:ring-2 focus:ring-blue-500"
                             />
 
-                            <div className="flex gap-2">
-                                <button onClick={handleCancel} className="cursor-pointer bg-slate-400 rounded-md text-white w-20 p-2">Cancel</button>
-                                <button onClick={handleSave} className="cursor-pointer bg-green-700 rounded-md text-white w-20 p-2">Save</button>
+                            <div className="flex gap-2 flex-wrap">
+                                <button
+                                    onClick={handleCancel}
+                                    className="cursor-pointer bg-slate-400 rounded-md text-white min-w-20 px-4 py-2">Cancel</button>
+                                <button
+                                    onClick={handleSave}
+                                    className="cursor-pointer bg-green-700 rounded-md text-white min-w-20 px-4 py-2">Save</button>
                             </div>
                         </div>
                     ):(
@@ -32,14 +36,14 @@ export default function AccountSettings({handleCancel, handleSave, isEditing, se
                             }}
                             className="w-full flex flex-row-reverse items-center justify-between p-4 hover:bg-[#334155] rounded-md transition-colors cursor-pointer"
                         >
-                            <div className="flex flex-row-reverse items-center gap-4">
-                                <User/>
-                                <div className="flex flex-col">
-                                    <p className="text-white font-semibold text-lg">Edit Username</p>
+                            <div className="flex flex-row-reverse items-center gap-4 min-w-0">
+                                <User className="shrink-0 w-5 h-5 sm:w-6 sm:h-6"/>
+                                <div className="flex flex-col items-start min-w-0">
+                                    <p className="text-white font-semibold text-base sm:text-lg">Edit Username</p>
                                     <p className="text-slate-300 font-medium text-sm">Change your display name</p>
                                 </div>
                             </div>
-                            <ChevronRight/>
+                            <ChevronRight className="shrink-0 w-5 h-5 sm:w-6 sm:h-6"/>
                         </button>
                     )}
                 </div>
@@ -63,14 +67,14 @@ export default function AccountSettings({handleCancel, handleSave, isEditing, se
                     onClick={() => fileInputRef.current?.click()}
 
                 >
-                    <div className="flex flex-row-reverse items-center gap-4">
-                        <Image/>
-                        <div className="flex flex-col">
-                            <p className="text-white font-semibold text-lg">Change Avatar</p>
+                    <div className="flex flex-row-reverse items-center gap-4 min-w-0">
+                        <Image className="shrink-0 w-5 h-5 sm:w-6 sm:h-6"/>
+                        <div className="flex flex-col items-start min-w-0">
+                            <p className="text-white font-semibold text-base sm:text-lg">Change Avatar</p>
                             <p className="text-slate-300 font-medium text-sm">Update your profile picture</p>
                         </div>
                     </div>
-                    <ChevronRight/>
+                    <ChevronRight className="shrink-0 w-5 h-5 sm:w-6 sm:h-6"/>
                 </button>
             </div>
         </div>

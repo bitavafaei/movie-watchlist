@@ -54,9 +54,9 @@ export default function Profile({watched, watchlist, username, avatar, bio,setUs
     return(
         <div className="bg-[#141B2B] min-h-screen">
             <Header/>
-            <div className="mx-auto w-full max-w-6xl py-5">
-                <div className="flex justify-between items-center py-4">
-                    <h1 className="text-white text-3xl font-bold">My Profile</h1>
+            <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8 py-4 sm:py-5">
+                <div className="flex justify-between items-center py-3 sm:py-4">
+                    <h1 className="text-white text-2xl sm:text-3xl font-bold">My Profile</h1>
                 </div>
                 <hr className="border-slate-700 border-[1px] rounded-md mb-4" />
                 <ProfileInfo username={username} avatar={avatar} bio={bio}/>
