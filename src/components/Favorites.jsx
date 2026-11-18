@@ -9,9 +9,9 @@ export default function Favorites({favorites, toggleFavorites, watchlist, onRemo
             <Header/>
             <div className="p-5">
                 <div className="mx-auto w-full max-w-6xl">
-                    <div className="flex justify-between items-center py-4">
-                        <h1 className="text-white text-3xl font-bold">Favorite Movies</h1>
-                        <div className="bg-green-700 text-white items-center flex w-fit h-10 max-w-md rounded-4xl text-lg px-4 gap-2">
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 py-4">
+                        <h1 className="text-white text-2xl sm:text-3xl font-bold">Favorite Movies</h1>
+                        <div className="bg-green-700 text-white items-center flex w-fit h-10 rounded-4xl text-sm sm:text-lg px-3 sm:px-4 gap-2">
                             <Heart size={20}/>
                             <div>Favorite Movies: {favoriteCount} </div>
                         </div>
@@ -24,7 +24,7 @@ export default function Favorites({favorites, toggleFavorites, watchlist, onRemo
                         <p className="text-sm mt-2">Add movies you love to your favorites!</p>
                     </div>
                 ):(
-                    <div className="justify-items-center grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-10">
+                    <div className="justify-items-center grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 lg:gap-8">
                         {favorites.map((movie) => {
                             const isAdded = watchlist.some((item) => item.id === movie.id)
 
