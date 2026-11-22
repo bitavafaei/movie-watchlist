@@ -15,7 +15,7 @@ export default function WatchlistItem({movie, onRemove, watched, markAsWatched})
                         <h1 className="text-white font-semibold text-lg sm:text-xl break-words">{movie.title}</h1>
                         <h2 className="text-yellow-500 text-sm mt-1">IMDb: {movie.rating}</h2>
                     </div>
-                    <button className={`rounded-md p-2 text-base sm:text-lg font-medium text-white inline-flex items-center justify-center gap-2 w-full sm:w-52 whitespace-nowrap
+                    <button className={`rounded-md p-2 text-base sm:text-lg font-medium text-white inline-flex items-center justify-center gap-2 w-full sm:w-52 whitespace-nowrap cursor-pointer
                                         ${isWatched ? "bg-green-700 " : "bg-slate-500"}`}
                             onClick={() => markAsWatched(movie)}>
                                 {isWatched ? "Watched" : "Mark As Watched"}
@@ -23,7 +23,7 @@ export default function WatchlistItem({movie, onRemove, watched, markAsWatched})
                     </button>
                 </div>
             </div>
-            <button className="w-full sm:w-20 h-10 rounded-md bg-red-500 text-base sm:text-lg text-white shrink-0" onClick={() => onRemove(movie)}>Remove</button>
+            <button className="w-full sm:w-20 h-10 rounded-md bg-red-500 text-base sm:text-lg text-white shrink-0 cursor-pointer" onClick={() => onRemove(movie)}>Remove</button>
         </div>
     )
 }
