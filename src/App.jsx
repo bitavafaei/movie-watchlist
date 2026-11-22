@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router";
 import Profile from "./components/Profile";
 import EditProfile from "./components/EditProfile";
 import Favorites from "./components/Favorites";
+import Login from "./components/Login";
 
 function App() {
 
@@ -132,6 +133,7 @@ function App() {
             <Route path="/profile" element={<Profile watched={watched} watchlist={watchlist} username={username} avatar={avatar} bio={bio} setAvatar={setAvatar} setUsername={setUsername} favorites={favorites}/>}/>
             <Route path="/edit-profile" element={<EditProfile username={username} avatar={avatar} bio={bio} setBio={setBio} setAvatar={setAvatar} setUsername={setUsername}/>}/>
             <Route path="/favorites" element={<Favorites favorites={favorites} toggleFavorites={toggleFavorites} watchlist={watchlist} onRemove={removeFromWatchlist} onAddToWatchlist={addToWatchlist}/>}/>
+            <Route path="/login" element={<Login/>}/>
         </Routes>
     </>
   )
