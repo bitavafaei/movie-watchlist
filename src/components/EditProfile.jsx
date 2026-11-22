@@ -29,14 +29,14 @@ export default function EditProfile({username, avatar, bio, setUsername, setBio,
     return(
         <div className="bg-[#141B2B] min-h-screen">
             <Header/>
-            <div className="px-4 py-6">
+            <div className="px-3 sm:px-5 py-4 sm:py-6">
 
-                <div className="mx-auto w-full max-w-4xl rounded-xl bg-[#202C3C] px-6 py-4 text-slate-300">
+                <div className="mx-auto w-full max-w-4xl rounded-xl bg-[#202C3C] px-4 sm:px-6 py-4 sm:py-5 text-slate-300">
 
-                    <h2 className="text-white text-3xl font-bold mb-5">Edit Profile</h2>
+                    <h2 className="text-white text-2xl sm:text-3xl font-bold mb-5">Edit Profile</h2>
 
                     <div className="flex flex-col items-center gap-2 pb-2">
-                        <div className="bg-[#334155] rounded-full w-32 h-32 flex justify-center items-center overflow-hidden">
+                        <div className="bg-[#334155] rounded-full w-24 h-24 sm:w-32 sm:h-32 shrink-0 flex justify-center items-center overflow-hidden">
                             {editingAvatar || avatar ? (
                                 <img
                                 src={editingAvatar || avatar}
@@ -44,7 +44,7 @@ export default function EditProfile({username, avatar, bio, setUsername, setBio,
                                 className="w-full h-full object-cover"
                                 />
                             ) : (
-                                <User size={48} className="text-[#94A3B8]"/>
+                                <User size={48} className="w-10 h-10 sm:w-12 sm:h-12 text-[#94A3B8]"/>
                             )}
                         </div>
 
@@ -56,7 +56,7 @@ export default function EditProfile({username, avatar, bio, setUsername, setBio,
                             Change your profile picture
                         </p>
 
-                        <button className="bg-[#334155] text-slate-200 px-4 py-2 rounded-lg hover:bg-[#475569] transition-colors cursor-pointer"
+                        <button className="bg-[#334155] text-slate-200 px-3 sm:px-4 py-2 text-sm sm:text-base rounded-lg hover:bg-[#475569] transition-colors cursor-pointer"
                             onClick={() => fileInputRef.current?.click()}>
                             Change Avatar
                         </button>
@@ -95,7 +95,7 @@ export default function EditProfile({username, avatar, bio, setUsername, setBio,
 
                             <input
                                 type="text"
-                                className="w-full rounded-md px-4 py-3 text-slate-300 text-right bg-[#334155] outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-slate-400 transition-all"
+                                className="w-full min-w-0 rounded-md px-3 sm:px-4 py-3 text-sm sm:text-base text-slate-300 text-right bg-[#334155] outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-slate-400 transition-all"
                                 value={editingUsername}
                                 onChange={(e) => setEditingUsername(e.target.value)}
                                 placeholder="Enter your username"
@@ -109,7 +109,7 @@ export default function EditProfile({username, avatar, bio, setUsername, setBio,
 
                             <input
                                 type="text"
-                                className="w-full rounded-md px-4 py-3 text-right text-slate-300 bg-[#334155] outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-slate-400 transition-all"
+                                className="w-full min-w-0 rounded-md px-3 sm:px-4 py-3 text-sm sm:text-base text-right text-slate-300 bg-[#334155] outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-slate-400 transition-all"
                                 value={editingBio}
                                 onChange={(e) => setEditingBio(e.target.value)}
                                 placeholder="Tell us about yourself ..."
@@ -118,16 +118,16 @@ export default function EditProfile({username, avatar, bio, setUsername, setBio,
 
                     </div>
 
-                    <div className="flex gap-2 mt-4 justify-end">
+                    <div className="flex flex-wrap gap-2 mt-4 justify-end">
                         <button
                             onClick={handleCancel}
-                            className="cursor-pointer bg-slate-500 hover:bg-slate-400 rounded-md text-white px-4 py-2 transition-colors">
+                            className="cursor-pointer bg-slate-500 hover:bg-slate-400 rounded-md text-white px-4 py-2 text-sm sm:text-base transition-colors">
                                 Cancel
                         </button>
 
                         <button
                             onClick={handleSave}
-                            className="cursor-pointer bg-green-700 hover:bg-green-600 rounded-md text-white px-4 py-2 transition-colors">
+                            className="cursor-pointer bg-green-700 hover:bg-green-600 rounded-md text-white px-4 py-2 text-sm sm:text-base transition-colors">
                                 Save
                         </button>
 
