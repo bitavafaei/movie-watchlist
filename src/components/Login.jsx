@@ -1,4 +1,9 @@
+import { Link } from "react-router";
+import { useState } from "react";
+
 export default function Login() {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
     return(
         <div className="bg-[#141B2B] min-h-screen">
             <div className="px-3 sm:px-5 py-4">
@@ -7,7 +12,12 @@ export default function Login() {
                         Welcome!
                     </h2>
 
-                    <form className="w-full max-w-md border border-slate-700/70 bg-[#202C3C] rounded-2xl flex flex-col items-center gap-5 py-8 px-5 sm:px-8 shadow-xl">
+                    <form
+                        onSubmit={(e) => {
+                            e.preventDefault()
+                            alert("Login successful!")
+                        }}
+                        className="w-full max-w-md border border-slate-700/70 bg-[#202C3C] rounded-2xl flex flex-col items-center gap-5 py-8 px-5 sm:px-8 shadow-xl">
 
                         <div className="flex flex-col gap-6 w-full">
                             <div className="flex flex-col gap-2">
@@ -16,6 +26,9 @@ export default function Login() {
                                 </label>
                                 <input
                                     type="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
                                     placeholder="youremail@example.com"
                                     className="w-full bg-[#141B2B] text-white placeholder:text-slate-500 border border-slate-600 rounded-lg p-3 outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500/50 transition-all" />
                             </div>
@@ -25,6 +38,9 @@ export default function Login() {
                                 </label>
                                 <input
                                     type="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
                                     className="w-full bg-[#141B2B] text-white border border-slate-600 rounded-lg p-3 outline-none focus:border-blue-500  focus:ring-1 focus:ring-blue-500/50 transition-all" />
                             </div>
                         </div>
@@ -37,7 +53,10 @@ export default function Login() {
                     </button>
 
                     <p className="text-slate-400 text-sm sm:text-base">
-                        Don't have an account? <span className="text-blue-400 cursor-pointer hover:text-blue-300 transition-colors">Sign Up</span>
+                        Don't have an account?
+                        <Link to="/signup" className="text-blue-400 cursor-pointer hover:text-blue-300 transition-colors pl-2">
+                            Sign Up
+                        </Link>
                     </p>
                     </form>
                 </div>

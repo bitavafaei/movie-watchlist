@@ -8,6 +8,7 @@ import Profile from "./components/Profile";
 import EditProfile from "./components/EditProfile";
 import Favorites from "./components/Favorites";
 import Login from "./components/Login";
+import SignUp from "./components/SignUp";
 
 function App() {
 
@@ -134,6 +135,7 @@ function App() {
             <Route path="/edit-profile" element={<EditProfile username={username} avatar={avatar} bio={bio} setBio={setBio} setAvatar={setAvatar} setUsername={setUsername}/>}/>
             <Route path="/favorites" element={<Favorites favorites={favorites} toggleFavorites={toggleFavorites} watchlist={watchlist} onRemove={removeFromWatchlist} onAddToWatchlist={addToWatchlist}/>}/>
             <Route path="/login" element={<Login/>}/>
+            <Route path="/signup" element={<SignUp/>}/>
         </Routes>
     </>
   )
